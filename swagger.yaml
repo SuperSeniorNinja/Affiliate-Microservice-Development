@@ -1,0 +1,54 @@
+openapi: 3.0.0
+info:
+  title: Affiliate System API
+  version: 1.0.0
+  description: API documentation for the Affiliate System Microservice
+servers:
+  - url: http://localhost:3000
+    description: Development server
+paths:
+  /affiliate:
+    post:
+      summary: Create a new affiliate code
+      description: Generate a unique affiliate code and save the affiliate details in the database.
+      tags:
+        - Affiliate
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                affiliateId:
+                  type: string
+                  example: "user123"
+                referredEmail:
+                  type: string
+                  example: "referred@example.com"
+      responses:
+        '201':
+          description: Affiliate code successfully created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  _id:
+                    type: string
+                  affiliateId:
+                    type: string
+                  affiliateCode:
+                    type: string
+                  referredEmail:
+                    type: string
+                  status:
+                    type: string
+                  commission:
+                    type: number
+                  createdAt:
+                    type: string
+                  updatedAt:
+                    type: string
+        '500':
+          description: Server error
